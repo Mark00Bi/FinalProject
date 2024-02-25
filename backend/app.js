@@ -17,11 +17,13 @@ const productRoutes = require('./routes/product');
 const app = express();
 
 // database connection
-mongoose.connect(process.env.DATABASE, {
+const dbUrl = 'mongodb://localhost:27017'; // Replace this with your actual database connection URL
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
-}).then(() => console.log('mongo cloud database successfully connected!'));
+}).then(() => console.log('MongoDB database connected!'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // middlewares
 app.use(morgan('dev'));
